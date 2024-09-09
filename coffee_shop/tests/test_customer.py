@@ -1,7 +1,7 @@
 import pytest
-from coffee import Coffee  # assuming the coffee module is in the same directory
-from customer import Customer  # assuming the customer module is in the same directory
-from order import Order  # assuming the order module is in the same directory
+from coffee import Coffee  
+from customer import Customer  
+from order import Order  
 
 def test_customer_name_validation():
     with pytest.raises(ValueError):
