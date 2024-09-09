@@ -1,0 +1,39 @@
+import pytest
+from coffee import Coffee  # assuming the coffee module is in the same directory
+from order import Order  # assuming the order module is in the same directory
+from customer import Customer  # assuming the customer module is in the same directory
+
+def test_coffee_name_validation():
+    with pytest.raises(ValueError):
+        Coffee("Co")
+    Coffee("Coffee")
+
+def test_coffee_orders():
+    coffee = Coffee("Coffee")
+    customer1 = Customer("JohnDoe")
+    customer2 = Customer("JaneDoe")
+    order1 = Order(customer1, coffee, 3.5)
+    order2 = Order(customer2, coffee, 4.0)
+    assert coffee.orders() == [order1, order2]
+
+def test_coffee_customers():
+    coffee = Coffee("Coffee")
+    customer1 = Customer("JohnDoe")
+    customer2 = Customer("JaneDoe")
+    order1 = Order(customer1, coffee, 3.5)
+    order2 = Order(customer2, coffee, 4.0)
+    assert coffee.customers() == {customer1, customer2}
+
+def test_coffee_num_orders():
+    coffee = Coffee("Coffee")
+    customer = Customer("JohnDoe")
+    order1 = Order(customer, coffee, 3.5)
+    order2 = Order(customer, coffee, 4.0)
+    assert coffee.num_orders() == 2
+
+def test_coffee_average_price():
+    coffee = Coffee("Coffee")
+    customer = Customer("JohnDoe")
+    order1 = Order(customer, coffee, 3.5)
+    order2 = Order(customer, coffee, 4.0)
+    assert coffee.average_price() == 3.75
