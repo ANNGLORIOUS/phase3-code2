@@ -1,0 +1,44 @@
+import pytest
+from coffee import Coffee  # assuming the coffee module is in the same directory
+from customer import Customer  # assuming the customer module is in the same directory
+from order import Order  # assuming the order module is in the same directory
+
+def test_customer_name_validation():
+    with pytest.raises(ValueError):
+        Customer("")
+    with pytest.raises(ValueError):
+        Customer("A" * 16)
+    Customer("ValidName")
+
+# def test_customer_name_encapsulation():
+#     customer = Customer("JohnDoe")
+#     assert customer.name == "JohnDoe"
+#     with pytest.raises(AttributeError):
+#         customer.name = "NewName"
+
+def test_customer_create_order():
+    customer = Customer("JohnDoe")
+    order = customer.create_order("Cappuccino", 3.5)
+    assert isinstance(order, Order)
+    assert order.customer == customer
+    assert order.coffee == "Cappuccino"
+    assert order.price == 3.5
+
+def test_customer_orders():
+    customer = Customer("JohnDoe")
+    order1 = Order(customer, "Cappuccino", 3.5)
+    order2 = Order(customer, "Latte", 4.0)
+    assert customer.orders() == [order1, order2]
+
+def test_customer_coffees():
+    customer = Customer("JohnDoe")
+    order1 = Order(customer, "Cappuccino", 3.5)
+    order2 = Order(customer, "Latte", 4.0)
+    assert customer.coffees() == {"Cappuccino", "Latte"}
+
+def test_customer_most_aficionado():
+    customer1 = Customer("JohnDoe")
+    customer2 = Customer("JaneDoe")
+    order1 = Order(customer1, "Cappuccino", 3.5)
+    order2 = Order(customer2, "Cappuccino", 4.0)
+    assert Customer.most_aficionado("Cappuccino") == customer2
