@@ -18,12 +18,12 @@ class Customer:
 
     """create a new order for the customer."""
     def create_order(self, coffee, price):
-        from .order import Order
+        from order import Order
         return Order(self, coffee, price)
 
     """retrive all orders that customers have made."""
     def orders(self):
-        from .order import Order
+        from order import Order
         return [order for order in Order.all_orders() if order.customer == self]
 
     def coffees(self):
@@ -33,7 +33,7 @@ class Customer:
     @classmethod
     def most_aficionado(cls, coffee):
         """Returns the customer with the most expensive order."""
-        from .order import Order
+        from order import Order
         orders = [order for order in Order.all_orders() if order.coffee == coffee]
         if not orders:
             return None
