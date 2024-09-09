@@ -1,7 +1,7 @@
 import pytest
-from coffee import Coffee  # assuming the coffee module is in the same directory
-from order import Order  # assuming the order module is in the same directory
-from customer import Customer  # assuming the customer module is in the same directory
+from coffee import Coffee  
+from order import Order 
+from customer import Customer  
 
 def test_order_price_validation():
     customer = Customer("JohnDoe")

@@ -10,11 +10,7 @@ def test_customer_name_validation():
         Customer("A" * 16)
     Customer("ValidName")
 
-# def test_customer_name_encapsulation():
-#     customer = Customer("JohnDoe")
-#     assert customer.name == "JohnDoe"
-#     with pytest.raises(AttributeError):
-#         customer.name = "NewName"
+
 
 def test_customer_create_order():
     customer = Customer("JohnDoe")
